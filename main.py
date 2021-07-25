@@ -1,8 +1,11 @@
+import os
 import discord
-import sqlite3
 from dotenv import load_dotenv
+
 config = load_dotenv()
-print(config)
+
+TOKEN = os.getenv('TOKEN')
+
 from discord.ext import commands
 
 ACCESS_ROOMS = [
@@ -45,7 +48,6 @@ async def on_voice_state_update(member, before, after):
 
 
 client.run(TOKEN)
-
 
 # @client.event
 # async def on_ready():
