@@ -7,14 +7,23 @@ config = load_dotenv()
 TOKEN = os.getenv('TOKEN')
 
 from discord.ext import commands
+from VoiceRoom import roomObj
+
+# roomObj.createTable()
+# roomObj.insert(1, 868611009290579999)
+rooms = roomObj.getUserRoomsByUserId(1)
+
+# for item in rooms:
+#     ACCESS_ROOMS
+#     print(item[2])
 
 ACCESS_ROOMS = [
     868611009290579999,
     863521886888394762
 ]
 
-client = discord.Client()
-bot = commands.Bot(command_prefix='!')
+client = commands.Bot(command_prefix='$')
+
 
 createdChannelList = dict()
 
@@ -47,7 +56,32 @@ async def on_voice_state_update(member, before, after):
         return
 
 
-client.run(TOKEN)
+# @bot.command()
+# async def test(ctx):
+#     print(ctx)
+#     print('inst')
+#     createVoiceRoom()
+#     return
+
+@client.command()
+async def install():
+    roomObj.createTable()
+    return
+
+@client.command()
+async def addVoiceRoom(ctx):
+    print(ctx.message.content)
+    # Add Validation
+    roomObj.createTable()
+    return
+
+
+# client.boadd_command(test)
+
+client.run(TOKEN, bot=True)
+
+
+# client.run(TOKEN)
 
 # @client.event
 # async def on_ready():
@@ -66,7 +100,7 @@ client.run(TOKEN)
 
 # @client.event
 # async def on_message(message):
-# guild = message.guild
+#     guild = message.guild
 # channel = await guild.create_voice_channel('cool-channel')
 # time.sleep(10)
 # await channel.delete()
