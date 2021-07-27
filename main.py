@@ -17,6 +17,8 @@ rooms = roomObj.getUserRoomsByUserId(1)
 #     ACCESS_ROOMS
 #     print(item[2])
 
+print('ok')
+
 ACCESS_ROOMS = [
     868611009290579999,
     863521886888394762
